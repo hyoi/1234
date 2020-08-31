@@ -7,6 +7,17 @@ const scale = 1.0;
 let renderer, scene, camera;
 let loading;
 
+
+var sock = new WebSocket('ws://hyoi-websocket.herokuapp.com/');
+ 
+sock.addEventListener('message',function(e){
+var keypointsdata = JSON.parse(e.data);
+	console.log(JSON.parse(e.data));
+	console.log('受信成功');
+});
+
+
+
 //THREEのレンダラの初期化
 const initRenderer = async () => {
 	//z-fighting対策でlogarithmicDepthBufferを指定
